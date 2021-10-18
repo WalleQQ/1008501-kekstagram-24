@@ -1,5 +1,9 @@
 import { comments } from './array.js';
 
+const photoCommentsCount = (min, max) =>  Math.round(Math.random() * (max - min)) + min;
+
+photoCommentsCount (1, 500);
+
 const photoId = (min, max) =>  Math.round(Math.random() * (max - min)) + min;
 
 photoId(1, 25);
@@ -20,4 +24,4 @@ const commentMessage = `${comments[randomCommentsId1]  } ${  comments[randomComm
 
 // commentLength('Проверяем строку' , 16);
 
-export {photoUrl, photoId, likesId, commentMessage};
+export {photoUrl, photoId, likesId, commentMessage, photoCommentsCount};
