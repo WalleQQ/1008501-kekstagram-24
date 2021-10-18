@@ -1,4 +1,4 @@
-import { comments } from './array.js';
+import { comments, names, photoDescription } from './array.js';
 
 const photoCommentsCount = (min, max) =>  Math.round(Math.random() * (max - min)) + min;
 
@@ -20,8 +20,11 @@ const randomCommentsId1 = Math.floor(Math.random() * comments.length);
 const randomCommentsId2 = Math.floor(Math.random() * comments.length);
 const commentMessage = `${comments[randomCommentsId1]  } ${  comments[randomCommentsId2]}`;
 
+const randomNameIndex = names[Math.floor(Math.random()*names.length)];
+const photoDescriptionIndex = photoDescription[Math.floor(Math.random()*photoDescription.length)];
+
 // const commentLength = (string, maxLength) => string.length <= maxLength;
 
 // commentLength('Проверяем строку' , 16);
 
-export {photoUrl, photoId, likesId, commentMessage, photoCommentsCount};
+export {photoUrl, photoId, likesId, commentMessage, photoCommentsCount, randomNameIndex, photoDescriptionIndex};
