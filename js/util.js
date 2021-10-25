@@ -2,19 +2,12 @@ import { comments, names, photoDescription } from './array.js';
 
 const photoCommentsCount = (min, max) =>  Math.round(Math.random() * (max - min)) + min;
 
-photoCommentsCount (1, 500);
-
 const photoId = (min, max) =>  Math.round(Math.random() * (max - min)) + min;
-
-photoId(1, 25);
-
 
 const likesId = (min, max) => Math.round(Math.random() * (max - min)) + min;
 
-likesId(15, 200);
-
-const photoUrlId = photoId(1, 25);
-const photoUrl = `photos/${photoUrlId}.jpg`;
+const getPhotoUrl = () => `photos/${photoId(1, 25)}.jpg`;
+const getPhotoUrlTest = (id) => `photos/${id}.jpg`;
 
 const randomCommentsId1 = Math.floor(Math.random() * comments.length);
 const randomCommentsId2 = Math.floor(Math.random() * comments.length);
@@ -23,8 +16,6 @@ const commentMessage = `${comments[randomCommentsId1]  } ${  comments[randomComm
 const randomNameIndex = names[Math.floor(Math.random()*names.length)];
 const photoDescriptionIndex = photoDescription[Math.floor(Math.random()*photoDescription.length)];
 
-// const commentLength = (string, maxLength) => string.length <= maxLength;
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-// commentLength('Проверяем строку' , 16);
-
-export {photoUrl, photoId, likesId, commentMessage, photoCommentsCount, randomNameIndex, photoDescriptionIndex};
+export {getPhotoUrl, getPhotoUrlTest, photoId, likesId, commentMessage, photoCommentsCount, randomNameIndex, photoDescriptionIndex, isEscapeKey};

@@ -1,8 +1,9 @@
-import { createPicture, pictureInfo } from './create-picture.js';
-import {bigPictureInfo} from './create-big-picture.js';
+import { createPicture } from './create-picture.js';
+import { showImage } from './show-image.js';
 
-pictureInfo();
-createPicture();
-bigPictureInfo();
+document.addEventListener('DOMContentLoaded', () => {
+  createPicture();
+  showImage();
+});
 
 
