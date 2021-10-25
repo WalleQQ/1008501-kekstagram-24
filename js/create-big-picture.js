@@ -25,6 +25,5 @@ const createBigPicture = (id) => {
   bigPictureImgDescription.textContent = photoDescriptionIndex;
 };
 
-// bigPictureInfo();
 
 export {createBigPicture, bigPictureElement};

@@ -1,9 +1,8 @@
 import { createPicture } from './create-picture.js';
-import { showImage } from './show-image.js';
+import './show-image.js';
+import './upload-photo.js';
+import './photo-editor.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   createPicture();
-  showImage();
 });
-
-

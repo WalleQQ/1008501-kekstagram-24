@@ -38,4 +38,4 @@ closeImageButton.addEventListener('click', () => {
   closeImage();
 });
 
-export {showImage, closeImage};
+export {showImage, closeImage, body};
