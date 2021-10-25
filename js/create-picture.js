@@ -1,4 +1,4 @@
-import {getPhotoUrlTest, photoId, likesId, photoCommentsCount} from './util.js';
+import {getPhotoUrlId, photoId, likesId, photoCommentsCount} from './util.js';
 
 const picturesElement = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
@@ -13,7 +13,7 @@ const createPicture = () => {
 
   for (let i = 0; i < 25; i++) {
     const photo = photoId(1, 25);
-    const photoUrl = getPhotoUrlTest(photo);
+    const photoUrl = getPhotoUrlId(photo);
     pictureImg.src = photoUrl;
     pictureImg.dataset.id = photo;
     pictureLikes.textContent = likesId(15, 200);

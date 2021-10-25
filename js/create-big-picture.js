@@ -13,7 +13,7 @@ const commentsItemText = commentsItem.querySelector('.social__text');
 const bigPictureImgDescription = bigPictureElement.querySelector('.social__caption');
 
 
-const bigPictureInfo = (id) => {
+const createBigPicture = (id) => {
   bigPictureCommentsElement.classList.add('hidden');
   bigPictureButtonShowMore.classList.add('hidden');
   bigPictureImg.src = `photos/${id}.jpg`;
@@ -27,4 +27,4 @@ const bigPictureInfo = (id) => {
 
 // bigPictureInfo();
 
-export {bigPictureInfo, bigPictureElement};
+export {createBigPicture, bigPictureElement};

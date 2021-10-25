@@ -7,7 +7,7 @@ const photoId = (min, max) =>  Math.round(Math.random() * (max - min)) + min;
 const likesId = (min, max) => Math.round(Math.random() * (max - min)) + min;
 
 const getPhotoUrl = () => `photos/${photoId(1, 25)}.jpg`;
-const getPhotoUrlTest = (id) => `photos/${id}.jpg`;
+const getPhotoUrlId = (id) => `photos/${id}.jpg`;
 
 const randomCommentsId1 = Math.floor(Math.random() * comments.length);
 const randomCommentsId2 = Math.floor(Math.random() * comments.length);
@@ -18,4 +18,4 @@ const photoDescriptionIndex = photoDescription[Math.floor(Math.random()*photoDes
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getPhotoUrl, getPhotoUrlTest, photoId, likesId, commentMessage, photoCommentsCount, randomNameIndex, photoDescriptionIndex, isEscapeKey};
+export {getPhotoUrl, getPhotoUrlId, photoId, likesId, commentMessage, photoCommentsCount, randomNameIndex, photoDescriptionIndex, isEscapeKey};
