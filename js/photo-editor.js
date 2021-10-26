@@ -1,6 +1,4 @@
 const imgUploadScaleContainer = document.querySelector('.img-upload__scale');
-const imgScaleControlSmaller = imgUploadScaleContainer.querySelector('.scale__control--smaller');
-const imgScaleControlBigger = imgUploadScaleContainer.querySelector('.scale__control--bigger');
 const imgScaleControlValue = imgUploadScaleContainer.querySelector('.scale__control--value');
 const minValue = 0;
 const maxValue = 100;
@@ -20,24 +18,44 @@ function increasingValue () {
 }
 
 function decreasingScale () {
+  decreasingValue();
   const getScaleValue = imgScaleControlValue.value / 100;
   imgUpload.style.transform = `scale(${getScaleValue})`;
 }
 
 function increasingScale () {
+  increasingValue();
   const getScaleValue = imgScaleControlValue.value / 100;
   imgUpload.style.transform = `scale(${getScaleValue})`;
 }
 
-imgScaleControlSmaller.addEventListener('click', () => {
-  decreasingValue();
+imgUploadScaleContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('scale__control--smaller')) {
+    decreasingScale();
 
-  imgScaleControlValue.addEventListener('change', decreasingScale());
+  } else if (event.target.classList.contains('scale__control--bigger')) {
+    increasingScale();
+  }
 });
 
-imgScaleControlBigger.addEventListener('click', () => {
-  increasingValue();
+const effectsList = document.querySelector('.effects__list');
 
-  imgScaleControlValue.addEventListener('change', increasingScale());
+effectsList.addEventListener('change', (event) => {
+  if (event.target.classList.contains('effect-chrome')) {
+    imgUpload.classList.add('effects__preview--chrome');
+  }  if (event.target.classList.contains('effect-sepia')) {
+    imgUpload.classList.remove('effects__preview--chrome');
+    imgUpload.classList.add('effects__preview--sepia');
+  } if (event.target.classList.contains('effect-marvin')) {
+    imgUpload.classList.remove('effects__preview--sepia');
+    imgUpload.classList.add('effects__preview--marvin');
+  } if (event.target.classList.contains('effect-phobos')) {
+    imgUpload.classList.remove('effects__preview--marvin');
+    imgUpload.classList.add('effects__preview--phobos');
+  } if (event.target.classList.contains('effect-heat')) {
+    imgUpload.classList.remove('effects__preview--phobos');
+    imgUpload.classList.add('effects__preview--heat');
+  }
 });
+
 

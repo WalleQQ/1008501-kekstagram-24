@@ -33,7 +33,7 @@
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
-              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" required>
+              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" accept="image/png, image/jpeg" required>
               <label for="upload-file" class="img-upload__label  img-upload__control">Загрузить</label>
             </fieldset>
 
@@ -75,35 +75,35 @@
                       </label>
                     </li>
                     <li class="effects__item">
-                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-chrome" value="chrome">
+                      <input type="radio" class="effects__radio effect-chrome  visually-hidden" name="effect" id="effect-chrome" value="chrome">
                       <label for="effect-chrome" class="effects__label">
                         <span class="effects__preview  effects__preview--chrome">Превью эффекта Хром</span>
                         Хром
                       </label>
                     </li>
                     <li class="effects__item">
-                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-sepia" value="sepia">
+                      <input type="radio" class="effects__radio effect-sepia  visually-hidden" name="effect" id="effect-sepia" value="sepia">
                       <label for="effect-sepia" class="effects__label">
                         <span class="effects__preview  effects__preview--sepia">Превью эффекта Сепия</span>
                         Сепия
                       </label>
                     </li>
                     <li class="effects__item">
-                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-marvin" value="marvin">
+                      <input type="radio" class="effects__radio effect-marvin  visually-hidden" name="effect" id="effect-marvin" value="marvin">
                       <label for="effect-marvin" class="effects__label">
                         <span class="effects__preview  effects__preview--marvin">Превью эффекта Марвин</span>
                         Марвин
                       </label>
                     </li>
                     <li class="effects__item">
-                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-phobos" value="phobos">
+                      <input type="radio" class="effects__radio effect-phobos  visually-hidden" name="effect" id="effect-phobos" value="phobos">
                       <label for="effect-phobos" class="effects__label">
                         <span class="effects__preview  effects__preview--phobos">Превью эффекта Фобос</span>
                         Фобос
                       </label>
                     </li>
                     <li class="effects__item">
-                      <input type="radio" class="effects__radio  visually-hidden" name="effect" id="effect-heat" value="heat">
+                      <input type="radio" class="effects__radio effect-heat  visually-hidden" name="effect" id="effect-heat" value="heat">
                       <label for="effect-heat" class="effects__label">
                         <span class="effects__preview  effects__preview--heat">Превью эффекта Зной</span>
                         Зной
@@ -114,8 +114,8 @@
 
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
-                  <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
-                  <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
+                  <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег" pattern="(^#[0-9A-Za-zА-Яа-яё]{1,19})">
+                  <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"></textarea>
                 </fieldset>
 
                 <!-- Кнопка для отправки данных на сервер -->
