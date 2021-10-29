@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {bigPictureElement, createBigPicture} from './create-big-picture.js';
+import {bigPictureElement, createBigPicture, clearCommentsList} from './create-big-picture.js';
 
 const body = document.querySelector('body');
 const picturesContainer = document.querySelector('.pictures');
@@ -7,7 +7,8 @@ const closeImageButton = document.querySelector('.big-picture__cancel');
 const onShowImageEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeImage();
+    body.classList.remove('modal-open');
+    bigPictureElement.classList.add('hidden');
   }
 };
 
@@ -23,7 +24,7 @@ function showImage (id) {
 function closeImage () {
   body.classList.remove('modal-open');
   bigPictureElement.classList.add('hidden');
-
+  clearCommentsList();
 
   document.removeEventListener('keydown', onShowImageEscKeydown);
 }

@@ -3,12 +3,26 @@ const textArea = document.querySelector('.text__description');
 const textAreaMaxLength = 140;
 
 hashtagsInput.addEventListener('input', () => {
-  if (hashtagsInput.validity.patternMismatch) {
-    hashtagsInput.setCustomValidity('Хэштэг начинается с # и должен содержать не больше 20 символов');
-  } else {
-    hashtagsInput.setCustomValidity('');
+  const value = hashtagsInput.value;
+  const hashtagsRegExp = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19})$/;
+  const hashArr= value.split(' ');
+  const filteredArr = [...new Set(hashArr)];
+
+
+  for (let i = 0; i < hashArr.length; i++) {
+    if (hashArr.length > filteredArr.length) {
+      hashtagsInput.setCustomValidity('Один и тот же хэш-тег не может быть использован дважды');
+    } else if (hashArr.length > 5) {
+      hashtagsInput.setCustomValidity('Не может быть больше 5 хэштэгов');
+    } else if (hashtagsRegExp.test(hashArr[i]) === false) {
+      hashtagsInput.setCustomValidity('Хэштэг начинается с # и должен содержать не больше 20 символов');
+    } else {
+      hashtagsInput.setCustomValidity('');
+    }
   }
+
   hashtagsInput.reportValidity();
+
 });
 
 textArea.addEventListener('input', () => {
@@ -21,3 +35,4 @@ textArea.addEventListener('input', () => {
   }
   textArea.reportValidity();
 });
+

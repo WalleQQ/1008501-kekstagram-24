@@ -4,11 +4,17 @@ import { isEscapeKey } from './util.js';
 const uploadPhoto = document.querySelector('#upload-file');
 const imageEditing = document.querySelector('.img-upload__overlay');
 const closeImageEditing = document.querySelector('#upload-cancel');
+
 const onCloseImageEditorEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeImageEditor();
+    body.classList.remove('modal-open');
+    imageEditing.classList.add('hidden');
   }
+};
+
+const clearUploadPhotoInput = () => {
+  uploadPhoto.innerHTML = '';
 };
 
 function openImageEditor () {
@@ -21,6 +27,7 @@ function openImageEditor () {
 function closeImageEditor () {
   body.classList.remove('modal-open');
   imageEditing.classList.add('hidden');
+  clearUploadPhotoInput();
 }
 
 uploadPhoto.addEventListener('change', () => {
@@ -30,3 +37,4 @@ uploadPhoto.addEventListener('change', () => {
 closeImageEditing.addEventListener('click', () => {
   closeImageEditor();
 });
+

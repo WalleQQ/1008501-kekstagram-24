@@ -10,6 +10,7 @@ imgUpload.style.transform = 'scale(1)';
 function decreasingValue () {
   const value = minValue < Number(imgScaleControlValue.value) ? imgScaleControlValue.value = Number(imgScaleControlValue.value) - 25 : imgScaleControlValue.value = 0;
   return imgScaleControlValue.setAttribute('value', value);
+
 }
 
 function increasingValue () {
@@ -40,20 +41,23 @@ imgUploadScaleContainer.addEventListener('click', (event) => {
 
 const effectsList = document.querySelector('.effects__list');
 
-effectsList.addEventListener('change', (event) => {
-  if (event.target.classList.contains('effect-chrome')) {
+effectsList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('effect-none')) {
+    imgUpload.className = '';
+  } if (event.target.classList.contains('effect-chrome')) {
+    imgUpload.className = '';
     imgUpload.classList.add('effects__preview--chrome');
   }  if (event.target.classList.contains('effect-sepia')) {
-    imgUpload.classList.remove('effects__preview--chrome');
+    imgUpload.className = '';
     imgUpload.classList.add('effects__preview--sepia');
   } if (event.target.classList.contains('effect-marvin')) {
-    imgUpload.classList.remove('effects__preview--sepia');
+    imgUpload.className = '';
     imgUpload.classList.add('effects__preview--marvin');
   } if (event.target.classList.contains('effect-phobos')) {
-    imgUpload.classList.remove('effects__preview--marvin');
+    imgUpload.className = '';
     imgUpload.classList.add('effects__preview--phobos');
   } if (event.target.classList.contains('effect-heat')) {
-    imgUpload.classList.remove('effects__preview--phobos');
+    imgUpload.className = '';
     imgUpload.classList.add('effects__preview--heat');
   }
 });

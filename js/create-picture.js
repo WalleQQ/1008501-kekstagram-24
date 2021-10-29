@@ -11,7 +11,7 @@ const pictureComments = pictureLink.querySelector('.picture__comments');
 const createPicture = () => {
   const createPictureFragment = document.createDocumentFragment();
 
-  for (let i = 0; i < 25; i++) {
+  for (let id = 0; id < 25; id++) {
     const photo = photoId(1, 25);
     const photoUrl = getPhotoUrlId(photo);
     pictureImg.src = photoUrl;
