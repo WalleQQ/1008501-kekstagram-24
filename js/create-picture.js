@@ -1,4 +1,4 @@
-import {photoUrl,  likesId, photoCommentsCount} from './util.js';
+import {getPhotoUrlId, photoId, likesId, photoCommentsCount} from './util.js';
 
 const picturesElement = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
@@ -7,28 +7,21 @@ const pictureImg = pictureLink.querySelector('.picture__img');
 const pictureLikes = pictureLink.querySelector('.picture__likes');
 const pictureComments = pictureLink.querySelector('.picture__comments');
 
-const pictureInfo = () => {
-  pictureImg.src = photoUrl;
-  pictureLikes.textContent = likesId(15, 200);
-  pictureComments.textContent = photoCommentsCount(1, 500);
-};
-
-pictureInfo();
-
-const createPictureFragment = document.createDocumentFragment();
 
 const createPicture = () => {
-  for (let i = 0; i < 25; i++) {
-    const pictureItem = pictureTemplate.cloneNode(true);
+  const createPictureFragment = document.createDocumentFragment();
+
+  for (let id = 0; id < 25; id++) {
+    const photo = photoId(1, 25);
+    const photoUrl = getPhotoUrlId(photo);
     pictureImg.src = photoUrl;
+    pictureImg.dataset.id = photo;
     pictureLikes.textContent = likesId(15, 200);
     pictureComments.textContent = photoCommentsCount(1, 500);
-    createPictureFragment.appendChild(pictureItem);
+    createPictureFragment.appendChild(pictureTemplate.cloneNode(true));
   }
+
+  picturesElement.appendChild(createPictureFragment);
 };
 
-createPicture();
-
-picturesElement.appendChild(createPictureFragment);
-
-export {createPicture, pictureInfo};
+export {createPicture, pictureImg};

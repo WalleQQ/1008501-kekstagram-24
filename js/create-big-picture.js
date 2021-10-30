@@ -1,6 +1,5 @@
-import {photoUrl,  likesId, photoCommentsCount, randomNameIndex, photoDescriptionIndex, commentMessage} from './util.js';
+import {getPhotoUrl, likesId, photoCommentsCount, randomNameIndex, photoDescriptionIndex, createCommentMessage} from './util.js';
 
-const body = document.querySelector('body');
 const bigPictureElement = document.querySelector('.big-picture');
 const bigPictureImgContainer = bigPictureElement.querySelector('.big-picture__img');
 const bigPictureButtonShowMore = bigPictureElement.querySelector('.comments-loader');
@@ -12,35 +11,41 @@ const commentsItem = bigPictureElement.querySelector('.social__comment');
 const commentsItemImg = commentsItem.querySelector('.social__picture');
 const commentsItemText = commentsItem.querySelector('.social__text');
 const bigPictureImgDescription = bigPictureElement.querySelector('.social__caption');
-const bigPictureCancel = bigPictureElement.querySelector('.big-picture__cancel');
+const commentsList = bigPictureElement.querySelector('.social__comments');
+const showMoreCommentsButton = bigPictureElement.querySelector('.social__comments-loader');
 
 
-const bigPictureInfo = () => {
-  body.classList.add('modal-open');
-  bigPictureElement.classList.remove('hidden');
-  bigPictureCommentsElement.classList.add('hidden');
-  bigPictureButtonShowMore.classList.add('hidden');
-  bigPictureImg.src = photoUrl;
-  bigPictureLikes.textContent = likesId(15, 200);
-  bigPictureCommentsCount.textContent = photoCommentsCount(1, 500);
-  commentsItemImg.src = photoUrl;
-  commentsItemImg.alt = randomNameIndex;
-  commentsItemText.textContent = commentMessage;
-  bigPictureImgDescription.textContent = photoDescriptionIndex;
+const clearCommentsList = () => {
+  commentsList.innerHTML = '';
 };
 
-bigPictureInfo();
+const createComments = () => {
+  const createPictureFragment = document.createDocumentFragment();
 
-bigPictureCancel.addEventListener('click', () => {
-  body.classList.remove('modal-open');
-  bigPictureElement.classList.add('hidden');
-});
-
-document.addEventListener('keydown', (evt) => {
-  if (evt.keyCode === 27) {
-    body.classList.remove('modal-open');
-    bigPictureElement.classList.add('hidden');
+  for (let commentI = 0; commentI < 5; commentI++) {
+    commentsItemImg.src = getPhotoUrl();
+    commentsItemImg.alt = randomNameIndex();
+    commentsItemText.textContent = createCommentMessage();
+    bigPictureImgDescription.textContent = photoDescriptionIndex();
+    createPictureFragment.appendChild(commentsItem.cloneNode(true));
+    commentsList.appendChild(createPictureFragment);
   }
+};
+
+const createBigPicture = (id) => {
+  bigPictureCommentsElement.classList.remove('hidden');
+  bigPictureButtonShowMore.classList.remove('hidden');
+  bigPictureImg.src = `photos/${id}.jpg`;
+  bigPictureImg.dataset.id = (id);
+  bigPictureLikes.textContent = likesId(15, 200);
+  bigPictureCommentsCount.textContent = photoCommentsCount(1, 500);
+  clearCommentsList();
+  createComments();
+};
+
+showMoreCommentsButton.addEventListener('click', () => {
+  createComments();
 });
 
-export {bigPictureInfo};
+export {createBigPicture, bigPictureElement, clearCommentsList};
+
