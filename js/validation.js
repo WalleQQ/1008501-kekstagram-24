@@ -9,12 +9,12 @@ hashtagsInput.addEventListener('input', () => {
   const filteredArr = [...new Set(hashArr)];
 
 
-  for (let i = 0; i < hashArr.length; i++) {
+  for (let hashArrI = 0; hashArrI < hashArr.length; hashArrI++) {
     if (hashArr.length > filteredArr.length) {
       hashtagsInput.setCustomValidity('Один и тот же хэш-тег не может быть использован дважды');
     } else if (hashArr.length > 5) {
       hashtagsInput.setCustomValidity('Не может быть больше 5 хэштэгов');
-    } else if (hashtagsRegExp.test(hashArr[i]) === false) {
+    } else if (hashtagsRegExp.test(hashArr[hashArrI]) === false) {
       hashtagsInput.setCustomValidity('Хэштэг начинается с # и должен содержать не больше 20 символов');
     } else {
       hashtagsInput.setCustomValidity('');
@@ -36,3 +36,4 @@ textArea.addEventListener('input', () => {
   textArea.reportValidity();
 });
 
+export {hashtagsInput, textArea};

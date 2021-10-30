@@ -12,22 +12,22 @@ const onShowImageEscKeydown = (evt) => {
   }
 };
 
-function showImage (id) {
+const showImage = (id) => {
   body.classList.add('modal-open');
   bigPictureElement.classList.remove('hidden');
 
   createBigPicture(id);
 
   document.addEventListener('keydown', onShowImageEscKeydown);
-}
+};
 
-function closeImage () {
+const closeImage = () => {
   body.classList.remove('modal-open');
   bigPictureElement.classList.add('hidden');
   clearCommentsList();
 
   document.removeEventListener('keydown', onShowImageEscKeydown);
-}
+};
 
 picturesContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('picture__img')) {
@@ -39,4 +39,4 @@ closeImageButton.addEventListener('click', () => {
   closeImage();
 });
 
-export {showImage, closeImage, body};
+export {showImage, closeImage, body, onShowImageEscKeydown};

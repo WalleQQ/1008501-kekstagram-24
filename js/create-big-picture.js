@@ -22,7 +22,7 @@ const clearCommentsList = () => {
 const createComments = () => {
   const createPictureFragment = document.createDocumentFragment();
 
-  for (let i = 0; i < 5; i++) {
+  for (let commentI = 0; commentI < 5; commentI++) {
     commentsItemImg.src = getPhotoUrl();
     commentsItemImg.alt = randomNameIndex();
     commentsItemText.textContent = createCommentMessage();
