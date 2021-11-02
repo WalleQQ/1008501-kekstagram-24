@@ -24,4 +24,4 @@ const createPicture = () => {
   picturesElement.appendChild(createPictureFragment);
 };
 
-export {createPicture, pictureImg};
+export {createPicture, pictureImg, pictureComments, pictureLikes};
