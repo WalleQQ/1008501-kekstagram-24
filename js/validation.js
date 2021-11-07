@@ -1,3 +1,7 @@
+import { sendData } from './api.js';
+import { showAlert } from './util.js';
+
+const imgForm = document.querySelector('.img-upload__form');
 const hashtagsInput = document.querySelector('.text__hashtags');
 const textArea = document.querySelector('.text__description');
 const textAreaMaxLength = 140;
@@ -36,4 +40,18 @@ textArea.addEventListener('input', () => {
   textArea.reportValidity();
 });
 
-export {hashtagsInput, textArea};
+const setImgFormSubmit = (onSuccess) => {
+  imgForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    sendData(
+      () => onSuccess(),
+      () => showAlert('Не удалось отправить форму. Попробуйте ещё раз'),
+      new FormData(evt.target),
+    );
+  });
+};
+
+export {hashtagsInput, textArea, setImgFormSubmit};
+
+

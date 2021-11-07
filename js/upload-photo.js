@@ -1,6 +1,7 @@
 import { body } from './show-image.js';
 import { isEscapeKey } from './util.js';
 import { hashtagsInput, textArea } from './validation.js';
+import { resetEditor } from './photo-editor.js';
 
 const uploadPhoto = document.querySelector('#upload-file');
 const imageEditing = document.querySelector('.img-upload__overlay');
@@ -19,6 +20,7 @@ const onCloseImageEditorEscKeydown = (evt) => {
     evt.preventDefault();
     body.classList.remove('modal-open');
     imageEditing.classList.add('hidden');
+    resetEditor();
   }
 };
 
@@ -37,6 +39,7 @@ const closeImageEditor = () => {
   body.classList.remove('modal-open');
   imageEditing.classList.add('hidden');
   clearUploadPhotoInput();
+  resetEditor();
 };
 
 uploadPhoto.addEventListener('change', () => {
@@ -46,3 +49,5 @@ uploadPhoto.addEventListener('change', () => {
 closeImageEditing.addEventListener('click', () => {
   closeImageEditor();
 });
+
+export {openImageEditor, closeImageEditor};

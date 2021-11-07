@@ -156,3 +156,14 @@ effectsList.addEventListener('click', (event) => {
     });
   }
 });
+
+function resetEditor () {
+  document.querySelector('.img-upload__form').reset();
+  sliderElement.classList.add('hidden');
+  imgScaleControlValue.value = '100';
+  imgUpload.style.transform = 'scale(1)';
+  imgUpload.className = '';
+  imgUpload.style.filter = '';
+}
+
+export {resetEditor};
