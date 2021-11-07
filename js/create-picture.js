@@ -4,6 +4,7 @@ const picturesElement = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
+// const imageCount = 10;
 
 
 const createPicture = () => {
@@ -23,6 +24,8 @@ const createPicture = () => {
 
   picturesElement.appendChild(picturesItemFragment);
 };
+
+// picturesElement.innerHTML= '';
 
 
 export {createPicture};

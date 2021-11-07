@@ -12,6 +12,7 @@ const startApp = async () => {
 
   pictures.setData(data);
   createPicture();
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
   setImgFormSubmit(closeImageEditor);
 };
 
