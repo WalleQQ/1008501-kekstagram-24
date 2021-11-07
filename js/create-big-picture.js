@@ -1,5 +1,6 @@
 import {pictures as picturesData} from './pictures-storage.js';
 
+
 const bigPictureElement = document.querySelector('.big-picture');
 const bigPictureImgContainer = bigPictureElement.querySelector('.big-picture__img');
 const bigPictureButtonShowMore = bigPictureElement.querySelector('.comments-loader');
@@ -39,7 +40,6 @@ const getDescription = (alt) => {
   bigPictureImgDescription.textContent = alt;
 };
 
-
 const createBigPicture = (id) => {
   const data = picturesData.data;
   const picture = data.find((pic) => {
@@ -48,6 +48,7 @@ const createBigPicture = (id) => {
 
   bigPictureCommentsElement.classList.remove('hidden');
   bigPictureButtonShowMore.classList.remove('hidden');
+
   bigPictureImg.src = picture.url;
   bigPictureLikes.textContent = picture.likes;
   bigPictureCommentsCount.textContent = picture.comments.length;

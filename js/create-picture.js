@@ -27,5 +27,4 @@ const createPicture = () => {
 
 // picturesElement.innerHTML= '';
 
-
 export {createPicture};
