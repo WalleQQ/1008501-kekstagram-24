@@ -1,4 +1,4 @@
-import {getPhotoUrl, likesId, randomNameIndex, photoDescriptionIndex, createCommentMessage, photoCommentsCount} from './util.js';
+import {pictures as picturesData} from './pictures-storage.js';
 
 const bigPictureElement = document.querySelector('.big-picture');
 const bigPictureImgContainer = bigPictureElement.querySelector('.big-picture__img');
@@ -22,13 +22,14 @@ const clearCommentsList = () => {
 };
 
 const createComments = () => {
-  const createPictureFragment = document.createDocumentFragment();
-
   for (let commentI = 0; commentI < 5; commentI++) {
+    const data = picturesData.data[commentI].comments[commentI];
+    const createPictureFragment = document.createDocumentFragment();
     bigPictureCommentsCountLoad.textContent++;
-    commentsItemImg.src = getPhotoUrl();
-    commentsItemImg.alt = randomNameIndex();
-    commentsItemText.textContent = createCommentMessage();
+    commentsItemImg.src = data.avatar;
+    commentsItemImg.alt = data.name;
+    commentsItemText.textContent = data.message;
+
     createPictureFragment.appendChild(commentsItem.cloneNode(true));
     commentsList.appendChild(createPictureFragment);
   }
@@ -39,14 +40,18 @@ const getDescription = (alt) => {
 };
 
 
-const createBigPicture = (src) => {
+const createBigPicture = (id) => {
+  const data = picturesData.data;
+  const picture = data.find((pic) => {
+    if (pic.id === Number(id)) {return pic;}
+  });
+
   bigPictureCommentsElement.classList.remove('hidden');
   bigPictureButtonShowMore.classList.remove('hidden');
-  bigPictureImg.src = src;
-  getDescription();
-  bigPictureLikes.textContent;
-  bigPictureCommentsCount.textContent = photoCommentsCount(1, 500);
-  // clearCommentsList();
+  bigPictureImg.src = picture.url;
+  bigPictureLikes.textContent = picture.likes;
+  bigPictureCommentsCount.textContent = picture.comments.length;
+  clearCommentsList();
   createComments();
 };
 

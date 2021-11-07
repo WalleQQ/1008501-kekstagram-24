@@ -12,11 +12,11 @@ const onShowImageEscKeydown = (evt) => {
   }
 };
 
-const showImage = (src) => {
+const showImage = (id) => {
   body.classList.add('modal-open');
   bigPictureElement.classList.remove('hidden');
 
-  createBigPicture(src);
+  createBigPicture(id);
 
   document.addEventListener('keydown', onShowImageEscKeydown);
 };
@@ -31,7 +31,7 @@ const closeImage = () => {
 
 picturesContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('picture__img')) {
-    showImage(event.target.src);
+    showImage(event.target.id);
     getDescription(event.target.alt);
   }
 });

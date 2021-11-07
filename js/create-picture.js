@@ -1,10 +1,13 @@
+import { pictures } from './pictures-storage.js';
+
 const picturesElement = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
 
-const createPicture = (allPictures) => {
+const createPicture = () => {
+  const allPictures = pictures.data;
   const picturesItemFragment = document.createDocumentFragment();
 
   allPictures.forEach(({id, url, likes, comments, description}) => {
@@ -20,5 +23,6 @@ const createPicture = (allPictures) => {
 
   picturesElement.appendChild(picturesItemFragment);
 };
+
 
 export {createPicture};
