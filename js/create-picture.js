@@ -7,16 +7,16 @@ const pictureTemplate = document.querySelector('#picture')
   .querySelector('.picture');
 
 
-const filterDiscussed = (a, b) => {
-  if(a.likes < b.likes) {
+const filterDiscussed = (first, second) => {
+  if(first.likes < second.likes) {
     return 1;
   } else {
     return -1;
   }
 };
 
-const filterDefault = (a, b) => {
-  if(a.id > b.id) {
+const filterDefault = (first, second) => {
+  if(first.id > second.id) {
     return 1;
   } else {
     return -1;
