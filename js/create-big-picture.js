@@ -1,5 +1,5 @@
-import {getPhotoUrl, likesId, photoCommentsCount, randomNameIndex, photoDescriptionIndex, createCommentMessage} from './util.js';
-import {pictureComments, pictureLikes} from './create-picture.js';
+import {pictures as picturesData} from './pictures-storage.js';
+
 
 const bigPictureElement = document.querySelector('.big-picture');
 const bigPictureImgContainer = bigPictureElement.querySelector('.big-picture__img');
@@ -23,36 +23,35 @@ const clearCommentsList = () => {
 };
 
 const createComments = () => {
-  const createPictureFragment = document.createDocumentFragment();
-
   for (let commentI = 0; commentI < 5; commentI++) {
+    const data = picturesData.data[commentI].comments[commentI];
+    const createPictureFragment = document.createDocumentFragment();
     bigPictureCommentsCountLoad.textContent++;
-    commentsItemImg.src = getPhotoUrl();
-    commentsItemImg.alt = randomNameIndex();
-    commentsItemText.textContent = createCommentMessage();
-    bigPictureImgDescription.textContent = photoDescriptionIndex();
+    commentsItemImg.src = data.avatar;
+    commentsItemImg.alt = data.name;
+    commentsItemText.textContent = data.message;
+
     createPictureFragment.appendChild(commentsItem.cloneNode(true));
     commentsList.appendChild(createPictureFragment);
   }
 };
 
-
-const createCommentsCount = () => {
-  bigPictureCommentsCount.textContent = pictureComments.textContent;
-};
-
-const createLikesCount = () => {
-  bigPictureLikes.textContent = pictureLikes.textContent;
+const getDescription = (alt) => {
+  bigPictureImgDescription.textContent = alt;
 };
 
 const createBigPicture = (id) => {
+  const data = picturesData.data;
+  const picture = data.find((pic) => {
+    if (pic.id === Number(id)) {return pic;}
+  });
+
   bigPictureCommentsElement.classList.remove('hidden');
   bigPictureButtonShowMore.classList.remove('hidden');
-  bigPictureImg.src = `photos/${id}.jpg`;
-  bigPictureImg.dataset.id = (id);
-  bigPictureLikes.textContent = likesId(15, 200);
-  createCommentsCount();
-  createLikesCount();
+
+  bigPictureImg.src = picture.url;
+  bigPictureLikes.textContent = picture.likes;
+  bigPictureCommentsCount.textContent = picture.comments.length;
   clearCommentsList();
   createComments();
 };
@@ -61,5 +60,5 @@ showMoreCommentsButton.addEventListener('click', () => {
   createComments();
 });
 
-export {createBigPicture, bigPictureElement, clearCommentsList};
+export {createBigPicture, bigPictureElement, clearCommentsList, getDescription};
 

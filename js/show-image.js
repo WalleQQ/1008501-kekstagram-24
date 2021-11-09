@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {bigPictureElement, createBigPicture, clearCommentsList } from './create-big-picture.js';
+import {bigPictureElement, createBigPicture, clearCommentsList, getDescription} from './create-big-picture.js';
 
 const body = document.querySelector('body');
 const picturesContainer = document.querySelector('.pictures');
@@ -29,9 +29,10 @@ const closeImage = () => {
   document.removeEventListener('keydown', onShowImageEscKeydown);
 };
 
-picturesContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('picture__img')) {
-    showImage(event.target.dataset.id);
+picturesContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('picture__img')) {
+    showImage(evt.target.id);
+    getDescription(evt.target.alt);
   }
 });
 

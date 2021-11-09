@@ -1,11 +1,24 @@
-import { createPicture } from './create-picture.js';
+import { createPicture, clickFilterButton } from './create-picture.js';
 import './show-image.js';
-import './upload-photo.js';
 import './photo-editor.js';
-import './validation.js';
+import {closeImageEditor} from './upload-photo.js';
+import { setImgFormSubmit } from './validation.js';
+import { getData } from './api.js';
+import { pictures } from './pictures-storage.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+
+const startApp = async () => {
+  const data = await getData();
+
+  pictures.setData(data);
   createPicture();
-});
+  clickFilterButton();
 
-// sss //
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
+  setImgFormSubmit(closeImageEditor);
+};
+
+startApp();
+
+
+// Сброс аплоад //

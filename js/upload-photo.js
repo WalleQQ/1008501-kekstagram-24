@@ -1,10 +1,26 @@
 import { body } from './show-image.js';
 import { isEscapeKey } from './util.js';
 import { hashtagsInput, textArea } from './validation.js';
+import { resetEditor } from './photo-editor.js';
 
 const uploadPhoto = document.querySelector('#upload-file');
 const imageEditing = document.querySelector('.img-upload__overlay');
 const closeImageEditing = document.querySelector('#upload-cancel');
+
+const fileChooser = document.querySelector('.img-upload__start input[type=file]');
+const preview = document.querySelector('.img-upload__preview img');
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
+fileChooser.addEventListener('change', () => {
+  const file = fileChooser.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    preview.src = URL.createObjectURL(file);
+  }
+});
 
 hashtagsInput.addEventListener('focus', () => hashtagsInput.classList.add('focused'));
 hashtagsInput.addEventListener('blur', () => hashtagsInput.classList.remove('focused'));
@@ -19,6 +35,7 @@ const onCloseImageEditorEscKeydown = (evt) => {
     evt.preventDefault();
     body.classList.remove('modal-open');
     imageEditing.classList.add('hidden');
+    resetEditor();
   }
 };
 
@@ -37,6 +54,7 @@ const closeImageEditor = () => {
   body.classList.remove('modal-open');
   imageEditing.classList.add('hidden');
   clearUploadPhotoInput();
+  resetEditor();
 };
 
 uploadPhoto.addEventListener('change', () => {
@@ -46,3 +64,5 @@ uploadPhoto.addEventListener('change', () => {
 closeImageEditing.addEventListener('click', () => {
   closeImageEditor();
 });
+
+export {openImageEditor, closeImageEditor};
