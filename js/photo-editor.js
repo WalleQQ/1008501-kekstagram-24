@@ -16,28 +16,28 @@ const effectHeat = document.querySelector('#effect-heat');
 imgUpload.style.transform = 'scale(1)';
 
 
-function decreasingValue () {
+const decreasingValue = () => {
   const value = minValue < Number(imgScaleControlValue.value) ? imgScaleControlValue.value = Number(imgScaleControlValue.value) - 25 : imgScaleControlValue.value = 0;
   return imgScaleControlValue.setAttribute('value', value);
 
-}
+};
 
-function increasingValue () {
+const increasingValue = () => {
   const value = maxValue > Number(imgScaleControlValue.value) ? imgScaleControlValue.value = Number(imgScaleControlValue.value) + 25 : imgScaleControlValue.value = 100;
   return imgScaleControlValue.setAttribute('value', value);
-}
+};
 
-function decreasingScale () {
+const decreasingScale = () => {
   decreasingValue();
   const getScaleValue = imgScaleControlValue.value / 100;
   imgUpload.style.transform = `scale(${getScaleValue})`;
-}
+};
 
-function increasingScale () {
+const increasingScale = () => {
   increasingValue();
   const getScaleValue = imgScaleControlValue.value / 100;
   imgUpload.style.transform = `scale(${getScaleValue})`;
-}
+};
 
 imgUploadScaleContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('scale__control--smaller')) {
@@ -157,13 +157,13 @@ effectsList.addEventListener('click', (event) => {
   }
 });
 
-function resetEditor () {
+const resetEditor = () => {
   document.querySelector('.img-upload__form').reset();
   sliderElement.classList.add('hidden');
   imgScaleControlValue.value = '100';
   imgUpload.style.transform = 'scale(1)';
   imgUpload.className = '';
   imgUpload.style.filter = '';
-}
+};
 
 export {resetEditor};

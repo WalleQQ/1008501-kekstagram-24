@@ -8,7 +8,7 @@ const pictureTemplate = document.querySelector('#picture')
 
 
 const filterDiscussed = (first, second) => {
-  if(first.likes < second.likes) {
+  if(first.comments < second.comments) {
     return 1;
   } else {
     return -1;

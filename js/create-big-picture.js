@@ -2,42 +2,42 @@ import {pictures as picturesData} from './pictures-storage.js';
 
 
 const bigPictureElement = document.querySelector('.big-picture');
-const bigPictureImgContainer = bigPictureElement.querySelector('.big-picture__img');
-const bigPictureButtonShowMore = bigPictureElement.querySelector('.comments-loader');
-const bigPictureImg = bigPictureImgContainer.querySelector('img');
-const bigPictureLikes = bigPictureElement.querySelector('.likes-count');
+const bigPictureImgContainerElement = bigPictureElement.querySelector('.big-picture__img');
+const bigPictureButtonShowMoreElement = bigPictureElement.querySelector('.comments-loader');
+const bigPictureImgElement = bigPictureImgContainerElement.querySelector('img');
+const bigPictureLikesElement = bigPictureElement.querySelector('.likes-count');
 const bigPictureCommentsElement = bigPictureElement.querySelector('.social__comment-count');
-const bigPictureCommentsCount = bigPictureCommentsElement.querySelector('.comments-count');
-const bigPictureCommentsCountLoad = bigPictureCommentsElement.querySelector('.comments-load');
-const commentsItem = bigPictureElement.querySelector('.social__comment');
-const commentsItemImg = commentsItem.querySelector('.social__picture');
-const commentsItemText = commentsItem.querySelector('.social__text');
-const bigPictureImgDescription = bigPictureElement.querySelector('.social__caption');
+const bigPictureCommentsCountElement = bigPictureCommentsElement.querySelector('.comments-count');
+const bigPictureCommentsCountLoadElement = bigPictureCommentsElement.querySelector('.comments-load');
+const commentsItemElement = bigPictureElement.querySelector('.social__comment');
+const commentsItemImgElement = commentsItemElement.querySelector('.social__picture');
+const commentsItemTextElement = commentsItemElement.querySelector('.social__text');
+const bigPictureImgDescriptionElement = bigPictureElement.querySelector('.social__caption');
 const commentsList = bigPictureElement.querySelector('.social__comments');
-const showMoreCommentsButton = bigPictureElement.querySelector('.social__comments-loader');
+const showMoreCommentsButtonElement = bigPictureElement.querySelector('.social__comments-loader');
 
 
 const clearCommentsList = () => {
   commentsList.innerHTML = '';
-  bigPictureCommentsCountLoad.textContent = '';
+  bigPictureCommentsCountLoadElement.textContent = '';
 };
 
 const createComments = () => {
   for (let commentI = 0; commentI < 5; commentI++) {
     const data = picturesData.data[commentI].comments[commentI];
     const createPictureFragment = document.createDocumentFragment();
-    bigPictureCommentsCountLoad.textContent++;
-    commentsItemImg.src = data.avatar;
-    commentsItemImg.alt = data.name;
-    commentsItemText.textContent = data.message;
+    bigPictureCommentsCountLoadElement.textContent++;
+    commentsItemImgElement.src = data.avatar;
+    commentsItemImgElement.alt = data.name;
+    commentsItemTextElement.textContent = data.message;
 
-    createPictureFragment.appendChild(commentsItem.cloneNode(true));
+    createPictureFragment.appendChild(commentsItemElement.cloneNode(true));
     commentsList.appendChild(createPictureFragment);
   }
 };
 
 const getDescription = (alt) => {
-  bigPictureImgDescription.textContent = alt;
+  bigPictureImgDescriptionElement.textContent = alt;
 };
 
 const createBigPicture = (id) => {
@@ -47,16 +47,16 @@ const createBigPicture = (id) => {
   });
 
   bigPictureCommentsElement.classList.remove('hidden');
-  bigPictureButtonShowMore.classList.remove('hidden');
+  bigPictureButtonShowMoreElement.classList.remove('hidden');
 
-  bigPictureImg.src = picture.url;
-  bigPictureLikes.textContent = picture.likes;
-  bigPictureCommentsCount.textContent = picture.comments.length;
+  bigPictureImgElement.src = picture.url;
+  bigPictureLikesElement.textContent = picture.likes;
+  bigPictureCommentsCountElement.textContent = picture.comments.length;
   clearCommentsList();
   createComments();
 };
 
-showMoreCommentsButton.addEventListener('click', () => {
+showMoreCommentsButtonElement.addEventListener('click', () => {
   createComments();
 });
 

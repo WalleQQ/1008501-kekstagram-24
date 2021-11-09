@@ -1,12 +1,10 @@
-import { showAlert, formSuccess, formError } from './util.js';
+import { showAlert, createFormSuccess, createFormError } from './util.js';
 import { resetEditor } from './photo-editor.js';
 
 const getData = async () => {
   try {
     const response = await fetch('https://24.javascript.pages.academy/kekstagram/data');
-    const data = await response.json();
-
-    return data;
+    return await response.json();
   } catch (error) {
     showAlert('Не удалось получить изображения. Обновите страницу');
   }
@@ -25,10 +23,10 @@ const sendData = (onSuccess, onFail, body) =>{
       if (response.ok) {
         onSuccess();
         resetEditor();
-        formSuccess();
+        createFormSuccess();
       } else {
         onFail('Не удалось отправить форму. Попробуйте ещё раз');
-        formError();
+        createFormError();
       }
     })
     .catch(() => {
