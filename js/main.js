@@ -1,4 +1,4 @@
-import { createPicture } from './create-picture.js';
+import { createPicture, clickFilterButton } from './create-picture.js';
 import './show-image.js';
 import './photo-editor.js';
 import {closeImageEditor} from './upload-photo.js';
@@ -12,8 +12,13 @@ const startApp = async () => {
 
   pictures.setData(data);
   createPicture();
+  clickFilterButton();
+
   document.querySelector('.img-filters').classList.remove('img-filters--inactive');
   setImgFormSubmit(closeImageEditor);
 };
 
 startApp();
+
+
+// Сброс аплоад //

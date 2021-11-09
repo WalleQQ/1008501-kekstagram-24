@@ -1,8 +1,8 @@
 const pictures = {
   data: [],
 
-  setData(test) {
-    this.data = test;
+  setData(picturesData) {
+    this.data = picturesData;
   },
 };
 

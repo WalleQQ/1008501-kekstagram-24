@@ -7,6 +7,21 @@ const uploadPhoto = document.querySelector('#upload-file');
 const imageEditing = document.querySelector('.img-upload__overlay');
 const closeImageEditing = document.querySelector('#upload-cancel');
 
+const fileChooser = document.querySelector('.img-upload__start input[type=file]');
+const preview = document.querySelector('.img-upload__preview img');
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
+fileChooser.addEventListener('change', () => {
+  const file = fileChooser.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    preview.src = URL.createObjectURL(file);
+  }
+});
+
 hashtagsInput.addEventListener('focus', () => hashtagsInput.classList.add('focused'));
 hashtagsInput.addEventListener('blur', () => hashtagsInput.classList.remove('focused'));
 textArea.addEventListener('focus', () => textArea.classList.add('focused'));

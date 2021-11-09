@@ -29,10 +29,10 @@ const closeImage = () => {
   document.removeEventListener('keydown', onShowImageEscKeydown);
 };
 
-picturesContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('picture__img')) {
-    showImage(event.target.id);
-    getDescription(event.target.alt);
+picturesContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('picture__img')) {
+    showImage(evt.target.id);
+    getDescription(evt.target.alt);
   }
 });
 
