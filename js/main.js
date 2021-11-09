@@ -19,6 +19,3 @@ const startApp = async () => {
 };
 
 startApp();
-
-
-// Сброс аплоад //
